@@ -2,12 +2,14 @@
 <form method="post" action="/mongodb">
     title: <input type="text" id="title" name="title" /><br />
     body: <textarea type="text" id="body" name="body" /><br />
+    pass: <input type="password" id="pass" name="pass" /><br />
     <input type="submit" value="submit" />
 </form>
 
 
-<div ng-repeat="result in apiResult | filter: choose">
+<div class="margin-b" ng-repeat="result in apiResult">
     <p>{{ result.title }}</p>
     <p>{{ result.body }}</p>
     <p>{{ result.date }}</p>
+    <hr>
 </div>

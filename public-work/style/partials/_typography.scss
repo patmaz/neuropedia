@@ -25,6 +25,7 @@ body {
     }
 }
 
+.about-h,
 .chosen-entry-h {
     font: {
         size: $default-size * 2;
@@ -39,6 +40,7 @@ body {
     @include margin-b(1rem);
 }
 
+.about-p,
 .chosen-entry-p {
     font: {
         size: $default-size * 1.5;
@@ -48,5 +50,11 @@ body {
     
     @include l {
         font-size: $default-size * 2;
+    }
+}
+
+.about-p{
+    span {
+        font-size: $default-size * 0.7;
     }
 }

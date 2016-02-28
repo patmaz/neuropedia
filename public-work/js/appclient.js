@@ -6,10 +6,6 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "/html/index2.html",
             controller: "mainViewController"
         })
-        .when("/add", {
-            templateUrl: "/html/addentry.html",
-            controller: "mainViewController"
-        })
         .when("/upload", {
             templateUrl: "/html/upload.html",
             controller: "mainViewController"
@@ -17,6 +13,14 @@ app.config(["$routeProvider", function ($routeProvider) {
         .when("/choose/:id", {
             templateUrl: "/html/chosen.html",
             controller: "chosenOne"
+        })
+        .when("/add", {
+            templateUrl: "/html/addentry.html",
+            controller: "mainViewController"
+        })
+        .when("/about", {
+            templateUrl: "/html/about.html",
+            controller: "mainViewController"
         });
 }]);
 
@@ -28,10 +32,10 @@ app.controller("mainViewController", ["$scope", "$resource", "$routeParams", fun
             isArray: true
         }
     });
-    
+
     $scope.apiResult = $scope.api.get();
-    
-    
+
+
 }]);
 
 app.controller("chosenOne", ["$scope", "$resource", "$routeParams", function ($scope, $resource, $routeParams) {
@@ -42,12 +46,14 @@ app.controller("chosenOne", ["$scope", "$resource", "$routeParams", function ($s
             isArray: true
         }
     });
-    
-    $scope.apiResult = $scope.api.get({ id: $routeParams.id });
-    
+
+    $scope.apiResult = $scope.api.get({
+        id: $routeParams.id
+    });
+
 }]);
 
-app.directive("item", function() {
+app.directive("item", function () {
     return {
         templateUrl: "html/singleentry.html",
         replace: true,

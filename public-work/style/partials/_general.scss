@@ -8,6 +8,16 @@ body {
     min-height: 100%;
 }
 
+#info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    border: 1px solid red;
+    border-radius: 50%;
+    font-weight: 200;
+}
+
 .main-link {
     display: inline-block;
     font-size: $default-size * 1.5;
@@ -32,6 +42,9 @@ body {
 }
 
 footer {
+    img{
+        height: 2.5rem;
+    }
     position: absolute;
     bottom: 0;
     height: 3rem;

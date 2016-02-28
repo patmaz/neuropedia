@@ -12,9 +12,9 @@ var upload = multer({ storage: storage });
 
 module.exports = function (app) {
 
-    app.post('/upload', upload.single('somefile'), function (req, res) {
-
-        console.log(req.file);
-
-    });
+//    app.post('/upload', upload.single('somefile'), function (req, res) {
+//
+//        console.log(req.file);
+//
+//    });
 }
