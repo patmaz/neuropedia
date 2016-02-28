@@ -1,1 +1,1 @@
-"use strict";var jq=$.noConflict();jq(window).load(function(){var o=jq(".title");console.log(o)});
+"use strict";var jq=$.noConflict();jq(document).ready(function(){});

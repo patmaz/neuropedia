@@ -1,7 +1,5 @@
 var jq = $.noConflict();
-jq(window).load(function(){
+jq(document).ready(function(){
     
-    var elements = jq(".title");
-    console.log(elements);
-    
+
 }); 

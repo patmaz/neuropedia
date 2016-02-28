@@ -24,6 +24,6 @@ gulp.task('js', function(){
 });
 
 gulp.task('default', ['styles'], function () {
-    gulp.watch('public-work/style/**/*.scss', ['styles']);
+    gulp.watch('public-work/style/**/*', ['styles']);
     gulp.watch('public-work/js/*.js', ['js']);
 });

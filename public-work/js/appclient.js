@@ -30,7 +30,6 @@ app.controller("mainViewController", ["$scope", "$resource", "$routeParams", fun
     });
     
     $scope.apiResult = $scope.api.get();
-    console.log($scope.apiResult);
     
     
 }]);

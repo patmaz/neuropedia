@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: $lightest-color;
+    position: relative;
+    min-height: 100%;
+}
+
+.main-link {
+    display: inline-block;
+    font-size: $default-size * 1.5;
+    border: 1px solid $dark-color;
+    border-radius: $default-size;
+    padding: $default-size / 2;
+    margin: $default-size / 2;
+    
+    @include m {
+        font-size: $default-size * 2;
+    }
+    
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+        color: $dark-color;
+    }
+}
+
+.margin-b {
+    @include margin-b(3rem);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    width: 100%;
+    text-align: center;
+    background-color: $dark-color;
+    color: $light-color;
+}

@@ -30,7 +30,8 @@ module.exports = function(app){
             console.log("saved");
         });
         
-        res.redirect(req.get('referer'));;
+        res.redirect("/#/add");
+        
     });
     
     app.get("/mongodb/", function (req, res) {
