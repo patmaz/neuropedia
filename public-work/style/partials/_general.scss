@@ -40,3 +40,70 @@ footer {
     background-color: $dark-color;
     color: $light-color;
 }
+
+///*
+//  We're using CSS transitions for when
+//  the enter and move events are triggered
+//  for the element that has the .repeated-item
+//  class
+//*/
+.animate-item.ng-enter, .animate-item.ng-move {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+///*
+// The ng-enter-active and ng-move-active
+// are where the transition destination properties
+// are set so that the animation knows what to
+// animate.
+//*/
+.animate-item.ng-enter.ng-enter-active,
+.animate-item.ng-move.ng-move-active {
+  opacity:1;
+}
+
+///*
+//  We're using CSS keyframe animations for when
+//  the leave event is triggered for the element
+//  that has the .repeated-item class
+//*/
+.animate-item.ng-leave {
+  animation:0.5s my_animation;
+}
+
+@keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+.animate-main.ng-enter, .animate-main.ng-move {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.animate-main.ng-enter.ng-enter-active,
+.animate-main.ng-move.ng-move-active {
+  opacity:1;
+}
+
+.animate-main.ng-leave {
+  opacity:0;
+}
+//
+//.animate-main.ng-enter { 
+//    animation: appear 1s ease-in;
+//}
+//.animate-main.ng-leave { 
+//    animation: disappear 1s ease-in;
+//}
+//
+//@keyframes appear {
+//    from    { opacity: 0.1}
+//    to {opacity: 1}
+//}
+//
+//@keyframes disappear {
+//    from    { opacity: 1}
+//    to {opacity: 0.1}
+//}
