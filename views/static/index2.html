@@ -1,0 +1,9 @@
+<h1>neuropedia</h1>
+
+<input type="text" ng-model="choose">
+
+<div ng-repeat="result in apiResult | filter: choose">
+    <p>{{ result.title }}</p>
+    <p>{{ result.body }}</p>
+    <p>{{ result.date }}</p>
+</div>
