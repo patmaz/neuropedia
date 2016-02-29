@@ -5,8 +5,15 @@
     pass: <input type="password" id="pass" name="pass" /><br />
     <input type="submit" value="submit" />
 </form>
-
-
+<hr>
+<h1>delete entry</h1>
+<form action="/mongodbdel" method="post">
+    title: <input type="text" id="title" name="title" /><br />
+    pass: <input type="password" id="pass" name="pass" /><br />
+    <input type="submit" value="delete" />
+</form>
+<hr>
+<h1>entries</h1>
 <div class="margin-b" ng-repeat="result in apiResult">
     <p>{{ result.title }}</p>
     <p>{{ result.body }}</p>

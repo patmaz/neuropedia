@@ -62,4 +62,22 @@ module.exports = function (app) {
         });
     });
 
+    app.post("/mongodbdel", urlencodedParser, function (req, res) {
+
+        if (req.body.pass === config.addpass) {
+            
+            Entry.findOneAndRemove({
+                title: req.body.title
+            }, function (err) {
+                if (err) throw err;
+                console.log('User deleted!');
+            });
+            
+            res.redirect("/#/add");
+            
+        } else {
+            res.send("nope");
+        }
+
+    });
 }

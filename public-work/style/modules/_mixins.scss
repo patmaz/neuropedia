@@ -1,0 +1,27 @@
+@mixin margin-b($value) {
+    margin-bottom: $value;
+}
+
+@mixin xs {
+    @media (max-width: #{$small-width}) {
+        @content;
+    }
+}
+
+@mixin s {
+    @media (min-width: #{$small-width}) {
+        @content;
+    }
+}
+
+@mixin m {
+    @media (min-width: #{$medium-width}) {
+        @content;
+    }
+}
+
+@mixin l {
+    @media (min-width: #{$large-width}) {
+        @content;
+    }
+}

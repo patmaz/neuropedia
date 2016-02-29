@@ -5,35 +5,7 @@ $dark-color: #212E40;
 $default-size: 1rem;
 $default-font: 'Work Sans', sans-serif;
 
-@mixin margin-b($value) {
-    margin-bottom: $value;
-}
-
 //RWD
 $small-width: 768px;
 $medium-width: 992px;
 $large-width: 1200px;
-
-@mixin xs {
-    @media (max-width: #{$small-width}) {
-        @content;
-    }
-}
-
-@mixin s {
-    @media (min-width: #{$small-width}) {
-        @content;
-    }
-}
-
-@mixin m {
-    @media (min-width: #{$medium-width}) {
-        @content;
-    }
-}
-
-@mixin l {
-    @media (min-width: #{$large-width}) {
-        @content;
-    }
-}

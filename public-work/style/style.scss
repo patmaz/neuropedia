@@ -1,7 +1,8 @@
 @import "vendor/reset";
 
 @import "modules/vars";
+@import "modules/mixins";
 
-@import "partials/typography";
 @import "partials/general";
-@import "partials/fields";
+@import "partials/elements";
+@import "partials/animations";

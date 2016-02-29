@@ -6,35 +6,8 @@ body {
     background-color: $lightest-color;
     position: relative;
     min-height: 100%;
-}
-
-#info {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px;
-    border: 1px solid red;
-    border-radius: 50%;
-    font-weight: 200;
-}
-
-.main-link {
-    display: inline-block;
-    font-size: $default-size * 1.5;
-    border: 1px solid $dark-color;
-    border-radius: $default-size;
-    padding: $default-size / 2;
-    margin: $default-size / 2;
-    
-    @include m {
-        font-size: $default-size * 2;
-    }
-    
-    &:hover {
-        text-decoration: none;
-        color: inherit;
-        color: $dark-color;
-    }
+    font-family: $default-font;
+    font-weight: 300;
 }
 
 .margin-b {
@@ -47,76 +20,9 @@ footer {
     }
     position: absolute;
     bottom: 0;
-    height: 3rem;
+    height: 4rem;
     width: 100%;
     text-align: center;
     background-color: $dark-color;
     color: $light-color;
 }
-
-///*
-//  We're using CSS transitions for when
-//  the enter and move events are triggered
-//  for the element that has the .repeated-item
-//  class
-//*/
-.animate-item.ng-enter, .animate-item.ng-move {
-  transition:0.5s linear all;
-  opacity:0;
-}
-
-///*
-// The ng-enter-active and ng-move-active
-// are where the transition destination properties
-// are set so that the animation knows what to
-// animate.
-//*/
-.animate-item.ng-enter.ng-enter-active,
-.animate-item.ng-move.ng-move-active {
-  opacity:1;
-}
-
-///*
-//  We're using CSS keyframe animations for when
-//  the leave event is triggered for the element
-//  that has the .repeated-item class
-//*/
-.animate-item.ng-leave {
-  animation:0.5s my_animation;
-}
-
-@keyframes my_animation {
-  from { opacity:1; }
-  to { opacity:0; }
-}
-
-.animate-main.ng-enter, .animate-main.ng-move {
-  transition:0.5s linear all;
-  opacity:0;
-}
-
-.animate-main.ng-enter.ng-enter-active,
-.animate-main.ng-move.ng-move-active {
-  opacity:1;
-}
-
-.animate-main.ng-leave {
-  opacity:0;
-}
-//
-//.animate-main.ng-enter { 
-//    animation: appear 1s ease-in;
-//}
-//.animate-main.ng-leave { 
-//    animation: disappear 1s ease-in;
-//}
-//
-//@keyframes appear {
-//    from    { opacity: 0.1}
-//    to {opacity: 1}
-//}
-//
-//@keyframes disappear {
-//    from    { opacity: 1}
-//    to {opacity: 0.1}
-//}
