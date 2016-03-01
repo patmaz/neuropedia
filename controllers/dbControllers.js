@@ -70,7 +70,7 @@ module.exports = function (app) {
                 title: req.body.title
             }, function (err) {
                 if (err) throw err;
-                console.log('User deleted!');
+                console.log('deleted!');
             });
             
             res.redirect("/#/add");
