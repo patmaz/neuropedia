@@ -7,7 +7,7 @@ var config = require("../config/config");
 
 module.exports = function (app) {
 
-    mongoose.connect(config.mongodb);
+    mongoose.connect(process.env.MONGO);
 
     var Schema = mongoose.Schema;
 
@@ -24,7 +24,7 @@ module.exports = function (app) {
 
     app.post("/mongodb", urlencodedParser, function (req, res) {
 
-        if (req.body.pass === config.addpass) {
+        if (req.body.pass === process.env.PASS) {
             var data = Entry({
                 title: req.body.title,
                 body: req.body.body,
@@ -64,7 +64,7 @@ module.exports = function (app) {
 
     app.post("/mongodbdel", urlencodedParser, function (req, res) {
 
-        if (req.body.pass === config.addpass) {
+        if (req.body.pass === process.env.MONGO) {
             
             Entry.findOneAndRemove({
                 title: req.body.title
