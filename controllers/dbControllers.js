@@ -3,11 +3,13 @@ var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
-var config = require("../config/config");
 
 module.exports = function (app) {
 
-    mongoose.connect(process.env.MONGO);
+    var adminpass = process.env.ADMINPASS || "adminpass";
+    var mongodb = process.env.MONGO || "mongo";
+    
+    mongoose.connect(mongodb);
 
     var Schema = mongoose.Schema;
 
@@ -21,10 +23,10 @@ module.exports = function (app) {
     });
 
     var Entry = mongoose.model("entries", entrySchema);
-
+    
     app.post("/mongodb", urlencodedParser, function (req, res) {
 
-        if (req.body.pass === process.env.PASS) {
+        if (req.body.pass === adminpass) {
             var data = Entry({
                 title: req.body.title,
                 body: req.body.body,
@@ -64,7 +66,7 @@ module.exports = function (app) {
 
     app.post("/mongodbdel", urlencodedParser, function (req, res) {
 
-        if (req.body.pass === process.env.MONGO) {
+        if (req.body.pass === adminpass) {
             
             Entry.findOneAndRemove({
                 title: req.body.title

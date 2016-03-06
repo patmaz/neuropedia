@@ -4,12 +4,13 @@
   "description": "my home app",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "author": "Patryk Mazurkiewicz",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "fs": "0.0.2",

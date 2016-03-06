@@ -2,6 +2,8 @@
 var express = require("express");
 var app = express();
 
+var dotenv = require('dotenv').config();
+
 //controllers
 var htmlController = require("./controllers/htmlController");
 var dbControllers = require("./controllers/dbControllers");
