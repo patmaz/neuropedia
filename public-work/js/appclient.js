@@ -6,10 +6,10 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "/html/index2.html",
             controller: "mainViewController"
         })
-        .when("/upload", {
-            templateUrl: "/html/upload.html",
-            controller: "mainViewController"
-        })
+        // .when("/upload", {
+        //     templateUrl: "/html/upload.html",
+        //     controller: "mainViewController"
+        // })
         .when("/choose/:id", {
             templateUrl: "/html/chosen.html",
             controller: "chosenOne"

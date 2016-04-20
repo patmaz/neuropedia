@@ -7,7 +7,7 @@ var dotenv = require('dotenv').config();
 //controllers
 var htmlController = require("./controllers/htmlController");
 var dbControllers = require("./controllers/dbControllers");
-var uploadController = require("./controllers/uploadController");
+//var uploadController = require("./controllers/uploadController");
 
 //static files
 app.use("/assets", express.static(__dirname + "/public"));
@@ -19,7 +19,7 @@ app.set("view engine", "ejs");
 //controllers
 htmlController(app);
 dbControllers(app);
-uploadController(app);
+//uploadController(app);
 
 //environmental variables on server or 3000
 var port = process.env.PORT || 3000;
