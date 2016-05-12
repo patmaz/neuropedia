@@ -8,7 +8,7 @@ module.exports = function (app) {
 
     var adminpass = process.env.ADMINPASS || "adminpass";
     var mongodb = process.env.MONGO || "mongo";
-    
+
     mongoose.connect(mongodb);
 
     var Schema = mongoose.Schema;
@@ -23,7 +23,7 @@ module.exports = function (app) {
     });
 
     var Entry = mongoose.model("entries", entrySchema);
-    
+
     app.post("/mongodb", urlencodedParser, function (req, res) {
 
         if (req.body.pass === adminpass) {
@@ -67,16 +67,16 @@ module.exports = function (app) {
     app.post("/mongodbdel", urlencodedParser, function (req, res) {
 
         if (req.body.pass === adminpass) {
-            
+
             Entry.findOneAndRemove({
                 title: req.body.title
             }, function (err) {
                 if (err) throw err;
                 console.log('deleted!');
             });
-            
+
             res.redirect("/#/add");
-            
+
         } else {
             res.send("nope");
         }
