@@ -6,10 +6,6 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "/html/index2.html",
             controller: "mainViewController"
         })
-        // .when("/upload", {
-        //     templateUrl: "/html/upload.html",
-        //     controller: "mainViewController"
-        // })
         .when("/choose/:id", {
             templateUrl: "/html/chosen.html",
             controller: "chosenOne"
@@ -24,33 +20,36 @@ app.config(["$routeProvider", function ($routeProvider) {
         });
 }]);
 
-app.controller("mainViewController", ["$scope", "$resource", "$routeParams", function ($scope, $resource, $routeParams) {
-
-    $scope.api = $resource("/mongodb", {}, {
-        get: {
-            method: 'GET',
-            isArray: true
-        }
-    });
-
-    $scope.apiResult = $scope.api.get();
-
-
+app.service('getData', ['$resource', function($resource) {
+    this.getAllData = function() {
+        var api = $resource("/mongodb", {}, {
+            get: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+        return api.get();
+    };
+    this.getEntry = function(title) {
+        var api = $resource("/mongodb/:id", {}, {
+            get: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+        var apiResult = api.get({
+            id: title
+        });
+        return apiResult;
+    };
 }]);
 
-app.controller("chosenOne", ["$scope", "$resource", "$routeParams", function ($scope, $resource, $routeParams) {
+app.controller("mainViewController", ["$scope", "getData", function ($scope, getData) {
+    $scope.apiResult = getData.getAllData();
+}]);
 
-    $scope.api = $resource("/mongodb/:id", {}, {
-        get: {
-            method: 'GET',
-            isArray: true
-        }
-    });
-
-    $scope.apiResult = $scope.api.get({
-        id: $routeParams.id
-    });
-
+app.controller("chosenOne", ["$scope", "$routeParams", "getData", function ($scope, $routeParams, getData) {
+    $scope.apiResult = getData.getEntry($routeParams.id);
 }]);
 
 app.directive("item", function () {
