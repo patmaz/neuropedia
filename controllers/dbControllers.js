@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Entry = require("../models/entry");
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
@@ -8,19 +9,6 @@ module.exports = function (app) {
 
     var mongodb = process.env.MONGO || "mongo";
     mongoose.connect(mongodb);
-
-    var Schema = mongoose.Schema;
-
-    var entrySchema = new Schema({
-        title: String,
-        body: String,
-        date: {
-            type: Date,
-            default: Date.now
-        },
-    });
-
-    var Entry = mongoose.model("entries", entrySchema);
 
     app.post("/mongodb", urlencodedParser, function (req, res) {
             var data = Entry({
@@ -36,7 +24,7 @@ module.exports = function (app) {
     });
 
     app.get("/mongodb/", function (req, res) {
-        Entry.find({}, function (err, entries) {
+        Entry.find({}, {title: 1, _id:0}, function (err, entries) {
             if (err) throw err;
             res.send(entries);
         });

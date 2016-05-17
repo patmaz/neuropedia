@@ -5,6 +5,7 @@
     <title>Admin true</title>
 </head>
 <body>
+    <h1>Ahoj <%= user.username %></h1>
     <h1>add entry</h1>
     <div>
         <form method="post" action="/mongodb">
@@ -20,5 +21,12 @@
             <input type="submit" value="delete">
         </form>
     </div>
+    <div>
+        <% data.forEach(function(entry){ %>
+            <p> <%= entry.title%> <p>
+            <p> <%= entry.body%> <p>
+        <% }); %>
+    </div>
+    <p><a href="/signout">sign out</a></p>
 </body>
 </html>

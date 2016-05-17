@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Entry = require("../models/entry");
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
@@ -28,7 +29,7 @@ module.exports = function(app) {
             done(err, user);
         });
     });
-
+    var superadminpass = process.env.ADMINPASS || "pass";
     var Schema = mongoose.Schema;
 
     var userSchema = new Schema({
@@ -95,7 +96,10 @@ module.exports = function(app) {
                         return done(err);
                     }
                     // already exists
-                    if (user) {
+                    if (req.body.superadminpass != superadminpass) {
+                        console.log('you are not a superadmin');
+                        return done(null, false);
+                    } else if (user) {
                         console.log('User already exists with username: '+username);
                         return done(null, false);
                     } else {
@@ -104,7 +108,7 @@ module.exports = function(app) {
                         var newUser = User({
                             username: username,
                             password: createHash(password),
-                            email: req.param('email')
+                            email: req.body.email
                         });
                         // save the user
                         newUser.save(function(err) {
@@ -125,7 +129,7 @@ module.exports = function(app) {
 
     app.get('/admin', function(req, res) {
         // Display the Login page with any flash message, if any
-        res.render('admin');
+        res.render('./admin/admin');
     });
 
     /* Handle Login POST */
@@ -136,7 +140,7 @@ module.exports = function(app) {
 
     /* GET Registration Page */
     app.get('/signup', function(req, res) {
-        res.render('register');
+        res.render('./admin/register');
     });
 
     /* Handle Registration POST */
@@ -146,7 +150,7 @@ module.exports = function(app) {
     }));
 
     app.get('/fail', function(req, res){
-        res.render('fail');
+        res.render('./admin/fail');
     });
     /* Handle Logout */
     app.get('/signout', function(req, res) {
@@ -162,6 +166,9 @@ module.exports = function(app) {
     }
     /* GET Home Page */
     app.get('/admintrue', isAuthenticated, function(req, res) {
-        res.render('admintrue', { user: req.user });
+        Entry.find({}, function (err, entries) {
+            if (err) throw err;
+            res.render('./admin/admintrue', { user: req.user, data: entries});
+        });
     });
 }
