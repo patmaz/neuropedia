@@ -10,11 +10,7 @@ var expressSession = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var bCrypt = require('bcrypt-nodejs');
 
-var express = require('express');
-var router = express.Router();
-
 module.exports = function(app) {
-
     app.use(expressSession({
         secret: 'mySecretKey',
         resave: false,
@@ -33,11 +29,6 @@ module.exports = function(app) {
         });
     });
 
-    var adminpass = process.env.ADMINPASS || "adminpass";
-    var mongodb = process.env.MONGO || "mongo";
-
-    //mongoose.connect(mongodb);
-
     var Schema = mongoose.Schema;
 
     var userSchema = new Schema({
@@ -54,20 +45,20 @@ module.exports = function(app) {
 
     var isValidPassword = function(user, password) {
         return bCrypt.compareSync(password, user.password);
-    }
+    };
 
     // Generates hash using bCrypt
     var createHash = function(password) {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-    }
+    };
 
     passport.use('login', new LocalStrategy({
             passReqToCallback: true
         },
         function(req, username, password, done) {
-            console.log('login');
+            console.log('login try');
             // check in mongo if a user with username exists or not
-            User.findOne({ 'username': username },
+            User.findOne({username: username},
                 function(err, user) {
                     // In case of any error, return using the done method
                     if (err)
@@ -93,10 +84,11 @@ module.exports = function(app) {
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) {
-            console.log('signup');
-            findOrCreateUser = function(){
+            console.log('signup try');
+            var findOrCreateUser = function(){
+                console.log('signup try');
                 // find a user in Mongo with provided username
-                User.findOne({ 'username' :  username }, function(err, user) {
+                User.findOne({username: username}, function(err, user){
                     // In case of any error, return using the done method
                     if (err){
                         console.log('Error in SignUp: '+err);
@@ -109,18 +101,18 @@ module.exports = function(app) {
                     } else {
                         // if there is no user with that email
                         // create the user
-                        var newUser = new User();
-                        // set the user's local credentials
-                        newUser.username = username;
-                        newUser.password = createHash(password);
-                        newUser.email = req.param('email');
+                        var newUser = User({
+                            username: username,
+                            password: createHash(password),
+                            email: req.param('email')
+                        });
                         // save the user
                         newUser.save(function(err) {
                             if (err){
-                                console.log('Error in Saving user: '+err);  
-                                throw err;  
+                                console.log('Error in Saving user: '+err);
+                                throw err;
                             }
-                            console.log('User Registration succesful');    
+                            console.log('User Registration succesful');
                             return done(null, newUser);
                         });
                     }
@@ -129,8 +121,7 @@ module.exports = function(app) {
             // Delay the execution of findOrCreateUser and execute the method
             // in the next tick of the event loop
             process.nextTick(findOrCreateUser);
-        })
-    );
+        }));
 
     app.get('/admin', function(req, res) {
         // Display the Login page with any flash message, if any
@@ -138,7 +129,7 @@ module.exports = function(app) {
     });
 
     /* Handle Login POST */
-    app.post('/login', passport.authenticate('login', {
+    app.post('/login', urlencodedParser, passport.authenticate('login', {
         successRedirect: '/admintrue',
         failureRedirect: '/fail'
     }));
@@ -149,18 +140,18 @@ module.exports = function(app) {
     });
 
     /* Handle Registration POST */
-    app.post('/signup', passport.authenticate('signup', {
+    app.post('/signup', urlencodedParser, passport.authenticate('signup', {
         successRedirect: '/admintrue',
         failureRedirect: '/fail'
     }));
+
     app.get('/fail', function(req, res){
-        console.log('failed');
         res.render('fail');
     });
     /* Handle Logout */
     app.get('/signout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/admin');
     });
 // As with any middleware it is quintessential to call next()
     // if the user is authenticated

@@ -10,10 +10,6 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "/html/chosen.html",
             controller: "chosenOne"
         })
-        .when("/add", {
-            templateUrl: "/html/addentry.html",
-            controller: "mainViewController"
-        })
         .when("/about", {
             templateUrl: "/html/about.html",
             controller: "mainViewController"

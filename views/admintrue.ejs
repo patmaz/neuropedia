@@ -1,10 +1,24 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Admin tru</title>
+    <meta charset="UTF-8">
+    <title>Admin true</title>
 </head>
 <body>
-	You're real admin
+    <h1>add entry</h1>
+    <div>
+        <form method="post" action="/mongodb">
+            title: <input type="text" id="title" name="title"><br>
+            body: <textarea type="text" id="body" name="body"></textarea><br>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <div>
+        <h1>delete entry</h1>
+        <form action="/mongodbdel" method="post">
+            title: <input type="text" id="title" name="title"><br>
+            <input type="submit" value="delete">
+        </form>
+    </div>
 </body>
 </html>
