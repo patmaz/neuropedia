@@ -1,16 +1,22 @@
 .main-header {
-    font-size: $default-size * 5;
-    
+    font-size: $default-size * 3;
+
+    @include xs {
+        font-size: $default-size * 4;
+    }
+    @include s {
+        font-size: $default-size * 5;
+    }
     @include m {
         font-size: $default-size * 7;
     }
     @include l {
         font-size: $default-size * 9;
     }
-    
+
     text-align: center;
     color: $dark-color;
-    
+
     span{
         font-weight: 600;
         text-transform: uppercase;
@@ -20,29 +26,49 @@
 .about-h,
 .chosen-entry-h {
     font: {
-        size: $default-size * 5;
+        size: $default-size * 2;
         weight: 700;
     }
-    
-    @include l {
-        font-size: $default-size * 4;
+
+    @include xs {
+        font-size: $default-size * 2.5;
     }
-    
+    @include s {
+        font-size: $default-size * 3;
+    }
+    @include m {
+        font-size: $default-size * 5;
+    }
+    @include l {
+        font-size: $default-size * 7;
+    }
+
     text-align: center;
     @include margin-b(1rem);
 }
 
 .about-p,
-.chosen-entry-p {
+.chosen-entry-p,
+.back {
     font: {
-        size: $default-size * 3;
+        size: $default-size * 1;
         weight: 300;
     }
-    padding-bottom: $default-size * 1.5;
-    
-    @include l {
+
+    @include xs {
         font-size: $default-size * 2;
     }
+    @include s {
+        font-size: $default-size * 2.5;
+    }
+    @include m {
+        font-size: $default-size * 2.8;
+    }
+    @include l {
+        font-size: $default-size * 3;
+    }
+
+    padding-bottom: $default-size * 1.5;
 }
 
 .about-p{
@@ -54,14 +80,31 @@
 .filter-field {
     display: block;
     width: 100%;
-    height: $default-size * 4.5;
-    font-size: $default-size * 3;
+    height: $default-size * 2.5;
+    font-size: $default-size * 1;
     background-color: $light-color;
     border: 2px solid $dark-color;
     border-left: none;
     border-right: none;
     padding: $default-size / 3;
-    
+
+    @include xs {
+        height: $default-size * 3;
+        font-size: $default-size * 1.5;
+    }
+    @include s {
+        height: $default-size * 3.5;
+        font-size: $default-size * 2;
+    }
+    @include m {
+        height: $default-size * 4;
+        font-size: $default-size * 2.5;
+    }
+    @include l {
+        height: $default-size * 4.5;
+        font-size: $default-size * 3;
+    }
+
     &:focus {
         box-shadow: 0 0 5px 1px #969696;
     }
@@ -69,16 +112,26 @@
 
 .main-link {
     display: inline-block;
-    font-size: $default-size * 4;
+    font-size: $default-size;
     border: 1px solid $dark-color;
     border-radius: $default-size;
     padding: $default-size / 2;
     margin: $default-size / 2;
-    
-    @include m {
+
+    @include xs {
+        font-size: $default-size * 1.5;
+    }
+    @include s {
         font-size: $default-size * 2;
     }
-    
+    @include m {
+        font-size: $default-size * 2.5;
+    }
+    @include l {
+        height: $default-size * 4.5;
+        font-size: $default-size * 3;
+    }
+
     &:hover {
         text-decoration: none;
         color: inherit;
