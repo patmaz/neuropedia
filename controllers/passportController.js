@@ -168,7 +168,10 @@ module.exports = function(app) {
     app.get('/admintrue', isAuthenticated, function(req, res) {
         Entry.find({}, function (err, entries) {
             if (err) throw err;
-            res.render('./admin/admintrue', { user: req.user, data: entries});
+            res.render('./admin/admintrue', {
+                user: req.user,
+                data: entries
+            });
         });
     });
 }
