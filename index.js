@@ -6,6 +6,7 @@ var dotenv = require('dotenv').config();
 
 //controllers
 var htmlController = require("./controllers/htmlController");
+var passportController = require("./controllers/passportController");
 var dbControllers = require("./controllers/dbControllers");
 
 //static files
@@ -17,6 +18,7 @@ app.set("view engine", "ejs");
 
 //controllers
 htmlController(app);
+passportController(app);
 dbControllers(app);
 
 //environmental variables on server or 3000

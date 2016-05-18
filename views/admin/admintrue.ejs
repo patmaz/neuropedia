@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin true</title>
+    <% include ./head %>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Ahoj <%= user.username %></h1>
+                <p><a href="/signout" class="btn btn-warning">sign out</a></p>
+                <h2>add entry</h2>
+                <div>
+                    <form method="post" action="/mongodb">
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Title"><br>
+                        <textarea type="text" id="body" name="body" class="form-control" placeholder="content" row="5"></textarea><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <h2>delete entry</h2>
+                <div>
+                    <form action="/mongodbdel" method="post">
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Entry to delete"><br>
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                </div>
+                <br>
+                <div>
+                    <table class="table table-hover">
+                        <% data.forEach(function(entry){ %>
+                            <tr>
+                                <td> <%= entry.title%> </td>
+                                <td> <%= entry.body%> </td>
+                            </tr>
+                        <% }); %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
