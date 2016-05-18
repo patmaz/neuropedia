@@ -10,10 +10,6 @@ app.config(["$routeProvider", function ($routeProvider) {
             templateUrl: "/html/chosen.html",
             controller: "chosenOne"
         })
-        .when("/add", {
-            templateUrl: "/html/addentry.html",
-            controller: "mainViewController"
-        })
         .when("/about", {
             templateUrl: "/html/about.html",
             controller: "mainViewController"
@@ -21,7 +17,7 @@ app.config(["$routeProvider", function ($routeProvider) {
 }]);
 
 app.service('getData', ['$resource', function($resource) {
-    this.getAllData = function() {
+    this.getAllTitles = function() {
         var api = $resource("/mongodb", {}, {
             get: {
                 method: 'GET',
@@ -45,7 +41,7 @@ app.service('getData', ['$resource', function($resource) {
 }]);
 
 app.controller("mainViewController", ["$scope", "getData", function ($scope, getData) {
-    $scope.apiResult = getData.getAllData();
+    $scope.apiResult = getData.getAllTitles();
 }]);
 
 app.controller("chosenOne", ["$scope", "$routeParams", "getData", function ($scope, $routeParams, getData) {
