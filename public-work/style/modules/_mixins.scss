@@ -3,7 +3,7 @@
 }
 
 @mixin xs {
-    @media (max-width: #{$small-width}) {
+    @media (min-width: #{$xsmall-width}) {
         @content;
     }
 }
