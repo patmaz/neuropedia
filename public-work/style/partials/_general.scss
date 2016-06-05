@@ -10,6 +10,21 @@ body {
     font-weight: 300;
 }
 
+p {
+    @include xs {
+        font-size: $default-size * 1.5;
+    }
+    @include s {
+        font-size: $default-size * 2.2;
+    }
+    @include m {
+        font-size: $default-size * 2;
+    }
+    span {
+        font-size: $default-size * 0.7;
+    }
+}
+
 .margin-b {
     @include margin-b(4rem);
 }
