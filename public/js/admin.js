@@ -1,0 +1,1 @@
+"use strict";var jq=$.noConflict();jq(document).ready(function(){var t=jq(".js-delete-btn");t.each(function(){var t=jq(this);jq(t).click(function(){var n=jq(t).closest("tr").find(".id").text();jq.ajax({type:"DELETE",url:"/mongodb/"+jq.trim(n)}).done(function(){console.log("sucess")}),setTimeout(function(){location.reload()},1e3)})})});

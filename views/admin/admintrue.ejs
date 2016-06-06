@@ -36,6 +36,9 @@
                             <tr>
                                 <td> <%= entry.title%> </td>
                                 <td> <%= entry.body%> </td>
+                                <td class="id"> <%= entry._id%> </td>
+                                <td><button class="btn btn-danger js-delete-btn">DELETE</button></td>
+                                <td><button class="btn btn-success js-edit-btn">EDIT</button></td>
                             </tr>
                         <% }); %>
                     </table>

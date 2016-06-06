@@ -40,13 +40,30 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/mongodbdel", urlencodedParser, function (req, res) {
+    app.delete("/mongodb/:id", function (req, res) {
         Entry.findOneAndRemove({
-            title: req.body.title
+            _id: req.params.id
         }, function (err) {
-            if (err) throw err;
-            console.log('deleted!');
+            if (err) {
+                res.end('error');
+                console.log(err);
+            } else {
+                res.end('success');
+                console.log('deleted!');
+            }
         });
-        res.redirect("/admintrue");
+    });
+
+    app.put("/mongodb/:id", function (req, res) {
+        Entry.findByIdAndUpdate({
+            _id: req.params.id
+        }, function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('deleted!');
+                res.redirect("/admintrue");
+            }
+        });
     });
 }
