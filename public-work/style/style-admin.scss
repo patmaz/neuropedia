@@ -1,0 +1,16 @@
+.modal{
+    width: 70%;
+    height: 550px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(63, 58, 61, 0.9);
+    box-shadow: 0px 0px 45px -8px rgba(0,0,0,0.75);
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+
+    .close {
+        color: #fff;
+    }
+}

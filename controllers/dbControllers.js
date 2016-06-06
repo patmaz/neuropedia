@@ -12,16 +12,16 @@ module.exports = function (app) {
     mongoose.connect(mongodb);
 
     app.post("/mongodb", urlencodedParser, function (req, res) {
-            var data = Entry({
-                title: req.body.title,
-                body: req.body.body,
-            });
+        var data = Entry({
+            title: req.body.title,
+            body: req.body.body,
+        });
 
-            data.save(function (err) {
-                if (err) throw err;
-                console.log("saved");
-            });
-            res.redirect("/admintrue");
+        data.save(function (err) {
+            if (err) throw err;
+            console.log("saved");
+        });
+        res.redirect("/admintrue");
     });
 
     app.get("/mongodb/", function (req, res) {
@@ -54,15 +54,17 @@ module.exports = function (app) {
         });
     });
 
-    app.put("/mongodb/:id", function (req, res) {
-        Entry.findByIdAndUpdate({
+    app.put("/mongodb/:id", urlencodedParser, function (req, res) {
+        Entry.findOneAndUpdate({
             _id: req.params.id
+        }, {
+            title: req.body.title,
+            body: req.body.body,
         }, function (err) {
             if (err) {
                 console.log(err);
             } else {
-                console.log('deleted!');
-                res.redirect("/admintrue");
+                console.log('edited!');
             }
         });
     });
