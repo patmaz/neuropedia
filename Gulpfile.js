@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
@@ -8,9 +9,11 @@ const babel = require('gulp-babel');
 
 gulp.task('styles', function () {
     return gulp.src('public-work/style/**/*.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer('last 2 version'))
         .pipe(cssnano())
+        .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest('public/style'))
 });
 
