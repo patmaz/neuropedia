@@ -9,11 +9,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Ahoj <%= user.username %></h1>
-                <p><a href="/signout" class="btn btn-warning pull-right">sign out</a></p>
-                <br>
-                <button class="btn btn-primary js-show-btn pull-left" id="add-entry-btn" data-show="add-entry-modal">ADD ENTRY</button>
-                <br>
+                <div class="jumbotron">
+                    <h1>Ahoj <%= user.username %></h1>
+                    <p><a href="/signout" class="btn btn-warning pull-right">sign out</a></p>
+                    <button class="btn btn-primary js-show-btn pull-left" id="add-entry-btn" data-show="add-entry-modal">ADD ENTRY</button>
+                </div>
                 <div>
                     <table class="table table-hover">
                         <% data.forEach(function(entry){ %>

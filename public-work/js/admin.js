@@ -3,24 +3,34 @@ jq(document).ready(function(){
     var $addModal = jq("#add-entry-modal");
     var $editModal = jq("#edit-entry-modal");
     var $deleteBtns = jq(".js-delete-btn");
-    var $close = jq(".js-close-btn");
-    var $show = jq(".js-show-btn");
+    var $closeBtns = jq(".js-close-btn");
+    var $showBtns = jq(".js-show-btn");
     var $editBtns = jq(".js-edit-btn");
     var $saveChangesBtns = jq(".btn-save-changes");
+    var $modals = jq(".modal");
 
-    $show.each(function(){
+    function showThis(item) {
+        item.removeClass("hidden").addClass("show");
+    }
+
+    function hideThis(item) {
+        item.removeClass("show").addClass("hidden");
+    }
+
+    $showBtns.each(function(){
         var self = jq(this);
+        // the id of the item intended to be shown taken from data tag
         var toShowId = "#" + self.data("show");
         self.click(function(){
-            jq(toShowId).removeClass("hidden").addClass("show");
+            showThis(jq(toShowId));
         });
     });
 
-    $close.each(function(){
+    $closeBtns.each(function(){
         var self = jq(this);
         self.click(function(){
             var itemToClose = self.parent();
-            itemToClose.removeClass("show").addClass("hidden");
+            hideThis(itemToClose);
         });
     });
 
@@ -32,7 +42,7 @@ jq(document).ready(function(){
             id: jq.trim(self.closest("tr").find(".id").text())
         },
         function(e){
-            $editModal.removeClass("hidden").addClass("show");
+            showThis($editModal);
             $editModal.find("#titleEdit").val(e.data.title);
             CKEDITOR.instances.bodyEdit.setData(e.data.body);
             $editModal.find(".btn-save-changes").data("id", e.data.id);
@@ -48,7 +58,6 @@ jq(document).ready(function(){
                 url: "/mongodb/" + jq.trim(itemToDelete)
             })
             .done(function(){
-                $addModal.removeClass("show").addClass("hidden");
                 location.reload();
             });
         });
@@ -68,10 +77,10 @@ jq(document).ready(function(){
                 }
             })
             .done(function(){
-                $editModal.removeClass("show").addClass("hidden");
+                hideThis($editModal);
                 setTimeout(function() {
                     location.reload();
-                }, 500);
+                }, 1000);
             });
         });
     });
