@@ -7,7 +7,6 @@ jq(document).ready(function(){
     var $showBtns = jq(".js-show-btn");
     var $editBtns = jq(".js-edit-btn");
     var $saveChangesBtns = jq(".btn-save-changes");
-    var $modals = jq(".modal");
 
     function showThis(item) {
         item.removeClass("hidden").addClass("show");
