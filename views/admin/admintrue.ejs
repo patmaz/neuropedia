@@ -9,36 +9,50 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Ahoj <%= user.username %></h1>
-                <p><a href="/signout" class="btn btn-warning">sign out</a></p>
-                <h2>add entry</h2>
-                <div>
-                    <form method="post" action="/mongodb">
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Title"><br>
-                        <textarea type="text" id="body" name="body" class="form-control" placeholder="content" row="5"></textarea><br>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                <div class="jumbotron">
+                    <h1>Ahoj <%= user.username %></h1>
+                    <p><a href="/signout" class="btn btn-warning pull-right">sign out</a></p>
+                    <button class="btn btn-primary js-show-btn pull-left" id="add-entry-btn" data-show="add-entry-modal">ADD ENTRY</button>
                 </div>
-                <h2>delete entry</h2>
-                <div>
-                    <form action="/mongodbdel" method="post">
-                        <input type="text" id="title" name="title" class="form-control" placeholder="Entry to delete"><br>
-                        <button type="submit" class="btn btn-danger">DELETE</button>
-                    </form>
-                </div>
-                <br>
                 <div>
                     <table class="table table-hover">
                         <% data.forEach(function(entry){ %>
                             <tr>
-                                <td> <%= entry.title%> </td>
-                                <td> <%= entry.body%> </td>
+                                <td class="title"> <%= entry.title%> </td>
+                                <td class="body"> <%= entry.body%> </td>
+                                <td class="id"> <%= entry._id%> </td>
+                                <td><button class="btn btn-danger js-delete-btn">DELETE</button></td>
+                                <td><button class="btn btn-success js-edit-btn">EDIT</button></td>
                             </tr>
                         <% }); %>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="add-entry-modal" class="hidden modal">
+        <button type="button" class="close js-close-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2>add entry</h2>
+        <form method="post" action="/mongodb">
+            <input type="text" id="title" name="title" class="form-control" placeholder="Title"><br>
+            <textarea type="text" id="body" name="body" class="form-control" placeholder="content" row="5"></textarea><br>
+            <script>
+                CKEDITOR.replace( 'body' );
+            </script>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div id="edit-entry-modal" class="hidden modal">
+        <button type="button" class="close js-close-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2>edit entry</h2>
+        <form>
+            <input type="text" id="titleEdit" name="title" class="form-control" placeholder="Title"><br>
+            <textarea type="text" id="bodyEdit" name="body" class="form-control" placeholder="content" row="5"></textarea><br>
+            <script>
+                CKEDITOR.replace( 'bodyEdit' );
+            </script>
+            <button class="btn btn-primary btn-save-changes">Save changes</button>
+        </form>
     </div>
 </body>
 </html>

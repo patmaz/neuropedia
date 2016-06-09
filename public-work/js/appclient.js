@@ -40,6 +40,12 @@ app.service('getData', ['$resource', function($resource) {
     };
 }]);
 
+app.filter('approveHtml', ['$sce', function($sce){
+    return function(html) {
+        return $sce.trustAsHtml(html);
+    };
+}]);
+
 app.controller("mainViewController", ["$scope", "getData", function ($scope, getData) {
     $scope.apiResult = getData.getAllTitles();
 }]);

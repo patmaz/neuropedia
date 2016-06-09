@@ -5,7 +5,7 @@
 </div>
 <div class="row chosen-entry margin-b">
     <div class="col-md-8 col-md-offset-2">
-        <p class="chosen-entry-p">{{ apiResult[0].body }}</p>
+        <div class="chosen-entry" ng-bind-html="apiResult[0].body | approveHtml"></div>
         <p><a class="back" href="/#/">wstecz</a></p>
     </div>
 </div>
