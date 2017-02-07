@@ -5,7 +5,7 @@
     var $chatWindow = jq('#chat__window');
     var $chatInput = jq('#chat__input');
     var name = jq('body').data('user');
-    var ws = new WebSocket('ws://localhost:3000/', 'echo-protocol');
+    var ws = new WebSocket('ws://neuropedia.pl/', 'echo-protocol');
 
     $toggleChat.on('click', function(){
         $chat.toggleClass('active');
