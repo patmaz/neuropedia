@@ -61,7 +61,7 @@
     &__window {
         height: 300px;
         width: 300px;
-        overflow: scroll;
+        overflow: auto;
         padding: 10px;
         span:nth-child(odd) {
             background-color: rgba(63, 58, 61, 0.9);
