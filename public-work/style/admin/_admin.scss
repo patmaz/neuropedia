@@ -14,3 +14,65 @@
         color: #fff;
     }
 }
+
+#chat {
+    position: fixed;
+    top: 20px;
+    right: -310px;
+    background-color: rgba(63, 58, 61, 0.9);
+    box-shadow: 0px 0px 45px -8px rgba(0,0,0,0.75);
+    padding: 10px 10px 10px 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #fff;
+    transition: right 1s;
+
+    &.active {
+        right: 0;
+    }
+
+    &__toggle {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        cursor: pointer;
+        &:before {
+            content: 'show chat';
+            display: block;
+            transform: rotate(-90deg);
+            width: 100px;
+            position: absolute;
+            top: 10%;
+            left: -40px;
+        }
+        &.active:before {
+            content: 'hide chat';
+            display: block;
+            transform: rotate(-90deg);
+            width: 100px;
+            position: absolute;
+            top: 10%;
+            left: -40px;
+        }
+    }
+
+    &__window {
+        height: 300px;
+        width: 300px;
+        overflow: scroll;
+        padding: 10px;
+        span:nth-child(odd) {
+            background-color: rgba(63, 58, 61, 0.9);
+            display: block;
+        }
+    }
+
+    &__input {
+        color: #000;
+    }
+    &__btn {
+        color: #000;
+    }
+}

@@ -5,7 +5,7 @@
     <title>Admin true</title>
     <% include ./head %>
 </head>
-<body>
+<body data-user="<%= user.username %>">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -54,5 +54,12 @@
             <button class="btn btn-primary btn-save-changes">Save changes</button>
         </form>
     </div>
+    <div id="chat">
+        <div id="chat__toggle"></div>
+        <div id="chat__window"></div>
+        <input id="chat__input" type="text">
+        <input id="chat__btn" type="button" value="wyślij">
+    </div>
+    <script src="assets/js/admin-chat.js"></script>
 </body>
 </html>
