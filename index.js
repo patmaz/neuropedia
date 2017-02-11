@@ -14,6 +14,7 @@ var chatController = require("./controllers/chatController");
 //static files
 app.use("/assets", express.static(__dirname + "/public"));
 app.use("/html", express.static(__dirname + "/views/static"));
+app.use("/othersites", express.static(__dirname + "/othersites"));
 
 // EJS engine
 app.set("view engine", "ejs");
